@@ -1,0 +1,93 @@
+/* Reset básico */
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #0a192f, #112240, #1e3a8a);
+  /* azul escuro → azul petróleo → azul royal */
+}
+
+/* Container centralizado */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 20px;
+}
+
+/* Título principal */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+/* Texto secundário */
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* Destaque do nome */
+.name {
+  font-weight: bold;
+  color: #60a5fa; /* azul claro para destacar o nome */
+}
+
+/* Barra de carregamento */
+.loading-bar {
+  width: 150px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.loading-bar::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  background-color: #3b82f6; /* azul vibrante */
+  animation: loading 1.5s infinite linear;
+  border-radius: 3px;
+}
+
+/* Rodapé */
+.footer {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Animações */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes loading {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
