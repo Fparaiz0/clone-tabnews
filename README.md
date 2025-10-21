@@ -17,10 +17,6 @@
   <a href="https://github.com/Fparaiz0" target="_blank">💼 GitHub Profile</a>
 </p>
 
-<p align="center">
-  <img src="images/oculos.gif" alt="Curso.dev Logo" width="500"/>
-</p>
-
 **Clone-TabNews** is a platform that replicates the TabNews experience, enabling developers to create and share content, ideas, and discussions in a simple, modern, and fully customizable way.
 
 ## 🛠️ Technologies Used
