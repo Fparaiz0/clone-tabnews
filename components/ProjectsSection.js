@@ -111,15 +111,18 @@ const ProjectsSection = () => {
 
       <style jsx>{`
         .projects {
-          padding: 5rem 0;
+          padding: 4rem 0;
           background: rgba(5, 20, 15, 0.3);
         }
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 2.5rem;
-          margin-top: 3rem;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2rem;
+          margin-top: 2.5rem;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .project-card {
@@ -130,21 +133,22 @@ const ProjectsSection = () => {
           overflow: hidden;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
+          height: fit-content;
         }
 
         .project-card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-5px);
           border-color: rgba(206, 241, 123, 0.3);
           box-shadow:
-            0 20px 40px rgba(8, 71, 52, 0.3),
-            0 10px 25px rgba(206, 241, 123, 0.1);
+            0 15px 30px rgba(8, 71, 52, 0.3),
+            0 8px 20px rgba(206, 241, 123, 0.1);
         }
 
         .project-card.featured {
           border-color: rgba(206, 241, 123, 0.4);
           box-shadow:
-            0 25px 50px rgba(8, 71, 52, 0.4),
-            0 15px 30px rgba(206, 241, 123, 0.15);
+            0 20px 40px rgba(8, 71, 52, 0.4),
+            0 12px 25px rgba(206, 241, 123, 0.15);
         }
 
         .project-image-container {
@@ -188,8 +192,8 @@ const ProjectsSection = () => {
         }
 
         .project-link {
-          width: 50px;
-          height: 50px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -210,34 +214,34 @@ const ProjectsSection = () => {
 
         .featured-badge {
           position: absolute;
-          top: 1rem;
-          right: 1rem;
+          top: 0.8rem;
+          right: 0.8rem;
           background: linear-gradient(
             135deg,
             var(--accent-lime),
             var(--secondary-mint)
           );
           color: var(--primary-green);
-          padding: 0.5rem 1rem;
-          border-radius: 20px;
-          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
+          border-radius: 16px;
+          font-size: 0.75rem;
           font-weight: 600;
-          box-shadow: 0 4px 15px rgba(206, 241, 123, 0.3);
+          box-shadow: 0 4px 12px rgba(206, 241, 123, 0.3);
         }
 
         .project-content {
-          padding: 2rem;
+          padding: 1.5rem;
         }
 
         .project-header {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .project-title {
-          font-size: 1.5rem;
+          font-size: 1.3rem;
           font-weight: 700;
           color: var(--accent-lime);
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
           line-height: 1.3;
         }
 
@@ -253,24 +257,24 @@ const ProjectsSection = () => {
 
         .project-description {
           color: var(--secondary-mint);
-          font-size: 0.95rem;
-          line-height: 1.6;
+          font-size: 0.9rem;
+          line-height: 1.5;
           margin-bottom: 0;
         }
 
         .project-technologies {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
+          gap: 0.4rem;
+          margin-bottom: 1.5rem;
         }
 
         .tech-tag {
           background: rgba(206, 241, 123, 0.1);
           color: var(--accent-lime);
-          padding: 0.4rem 0.9rem;
-          border-radius: 12px;
-          font-size: 0.8rem;
+          padding: 0.35rem 0.75rem;
+          border-radius: 10px;
+          font-size: 0.75rem;
           font-weight: 500;
           border: 1px solid rgba(206, 241, 123, 0.2);
           transition: all 0.3s ease;
@@ -288,8 +292,8 @@ const ProjectsSection = () => {
 
         .project-actions .btn {
           flex: 1;
-          padding: 0.875rem 1.5rem;
-          font-size: 0.9rem;
+          padding: 0.75rem 1.25rem;
+          font-size: 0.85rem;
           font-weight: 600;
           display: flex;
           align-items: center;
@@ -300,8 +304,8 @@ const ProjectsSection = () => {
         /* Responsive Design */
         @media (max-width: 1024px) {
           .projects-grid {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
           }
         }
 
@@ -314,14 +318,15 @@ const ProjectsSection = () => {
             grid-template-columns: 1fr;
             gap: 1.5rem;
             margin-top: 2rem;
+            padding: 0 1rem;
           }
 
           .project-image-container {
-            height: 200px;
+            height: 180px;
           }
 
           .project-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
           }
 
           .project-actions {
@@ -334,20 +339,32 @@ const ProjectsSection = () => {
         }
 
         @media (max-width: 480px) {
-          .project-card {
-            margin: 0 0.5rem;
+          .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
           }
 
           .project-content {
-            padding: 1.25rem;
+            padding: 1rem;
           }
 
           .project-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
           }
 
           .project-description {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+          }
+
+          .project-image-container {
+            height: 160px;
+          }
+
+          .featured-badge {
+            top: 0.6rem;
+            right: 0.6rem;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
           }
         }
       `}</style>
