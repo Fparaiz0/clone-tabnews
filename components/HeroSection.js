@@ -8,8 +8,12 @@ const HeroSection = React.forwardRef((props, ref) => {
 
   const texts = [
     "Desenvolvedor Full Stack",
-    "Especialista em Php",
+    "Especialista em Php/Laravel",
     "Entusiasmado por Next.js",
+    "Fascinado por Banco de Dados",
+    "Experiente em API'S",
+    "Focado em Performance",
+    "Transformando Ideias em Código",
   ];
 
   useEffect(() => {
