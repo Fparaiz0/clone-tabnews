@@ -1,13 +1,28 @@
 import React from "react";
 
 const ProjectsSection = () => {
+  const getYouTubeEmbedUrl = (url) => {
+    const regExp =
+      /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|)([^\&\?\%]{11})(?:[\?&][^\s]*)*$/;
+    const match = url.match(regExp);
+    // Nota: Os parâmetros de autoplay, mute e loop já garantem a experiência de fundo.
+    return match && match[1]
+      ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1&loop=1&playlist=${match[1]}&controls=0`
+      : null;
+  };
+
+  const isLocalVideo = (url) => {
+    return (
+      url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg")
+    );
+  };
+
   const projects = [
     {
       title: "Pré-Postagem MagnoJet",
       description:
         "Esta plataforma foi desenvolvida para a empresa MagnoJet e tem como objetivo realizar a pré-postagem através das APIs oficiais dos Correios, oferecendo um fluxo simples, seguro e eficiente para geração de PLPs, etiquetas e integração logística.",
-      image:
-        "https://github.com/user-attachments/assets/a08ce511-de74-4edc-a364-52ed6cb1e96c",
+      image: "/videos/magnojet.mp4", // URL de vídeo local (16:9)
       technologies: [
         "Laravel 12",
         "Php",
@@ -19,6 +34,15 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/Fparaiz0/prepostagem_magnojet",
       featured: true,
     },
+    // Você pode adicionar um projeto com link do YouTube aqui para testar o iframe
+    // {
+    //   title: "Youtube Test",
+    //   description: "Teste de responsividade com embed do YouTube.",
+    //   image: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    //   technologies: ["React", "CSS"],
+    //   githubUrl: "#",
+    //   featured: false,
+    // },
   ];
 
   return (
@@ -31,29 +55,106 @@ const ProjectsSection = () => {
         </p>
 
         <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`project-card ${project.featured ? "featured" : ""}`}
-            >
-              <div className="project-image-container">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-image"
-                />
-                <div className="project-overlay">
-                  <div className="project-links">
+          {projects.map((project, index) => {
+            const youtubeEmbedUrl = getYouTubeEmbedUrl(project.image);
+            const isVideoFile = isLocalVideo(project.image);
+            const isVideoContent = youtubeEmbedUrl || isVideoFile;
+
+            return (
+              <div
+                key={index}
+                className={`project-card ${project.featured ? "featured" : ""}`}
+              >
+                <div className="project-media-container">
+                  {youtubeEmbedUrl ? (
+                    <div className="video-wrapper">
+                      <iframe
+                        src={youtubeEmbedUrl}
+                        title={project.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="project-video"
+                      ></iframe>
+                    </div>
+                  ) : isVideoFile ? (
+                    <div className="video-wrapper">
+                      <video
+                        src={project.image}
+                        title={project.title}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="project-video"
+                      >
+                        Seu navegador não suporta o elemento de vídeo.
+                      </video>
+                    </div>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-image"
+                    />
+                  )}
+
+                  {!isVideoContent && (
+                    <div className="project-overlay">
+                      <div className="project-links">
+                        <a
+                          href={project.githubUrl}
+                          className="project-link github"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Ver código no GitHub"
+                        >
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {project.featured && (
+                    <div className="featured-badge">
+                      <span>⭐ Destaque</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="project-content">
+                  <div className="project-header">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                  </div>
+
+                  <div className="project-technologies">
+                    {project.technologies.map((tech, idx) => (
+                      <span key={idx} className="tech-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="project-actions">
                     <a
                       href={project.githubUrl}
-                      className="project-link github"
+                      className="btn btn-secondary"
                       target="_blank"
                       rel="noopener noreferrer"
-                      title="Ver código no GitHub"
                     >
+                      <span>Código</span>
                       <svg
-                        width="20"
-                        height="20"
+                        width="16"
+                        height="16"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -63,49 +164,9 @@ const ProjectsSection = () => {
                     </a>
                   </div>
                 </div>
-                {project.featured && (
-                  <div className="featured-badge">
-                    <span>⭐ Destaque</span>
-                  </div>
-                )}
               </div>
-
-              <div className="project-content">
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                </div>
-
-                <div className="project-technologies">
-                  {project.technologies.map((tech, idx) => (
-                    <span key={idx} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="project-actions">
-                  <a
-                    href={project.githubUrl}
-                    className="btn btn-secondary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Código</span>
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -117,7 +178,7 @@ const ProjectsSection = () => {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 2rem;
           margin-top: 2.5rem;
           max-width: 1200px;
@@ -151,13 +212,32 @@ const ProjectsSection = () => {
             0 12px 25px rgba(206, 241, 123, 0.15);
         }
 
-        .project-image-container {
+        /* *********************************************************
+         * ALTERAÇÃO CHAVE: USO DA TÉCNICA DE ASPECT RATIO (16:9)
+         * ********************************************************* */
+        .project-media-container {
           position: relative;
           overflow: hidden;
-          height: 300px;
+
+          /* 1. Remove a altura fixa e usa a largura total */
+          width: 100%;
+          /* 2. Força a proporção 16:9 através de padding-bottom (9/16 = 56.25%) */
+          padding-bottom: 56.25%;
+          /* 3. A altura real é 0, o padding cria o espaço */
+          height: 0;
+
+          /* Não precisamos mais desses, mas os mantemos se as imagens forem usadas */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
         }
 
         .project-image {
+          /* A imagem cobre o espaço gerado pelo padding, como na solução anterior */
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -166,6 +246,35 @@ const ProjectsSection = () => {
 
         .project-card:hover .project-image {
           transform: scale(1.05);
+        }
+
+        .video-wrapper {
+          /* Torna o wrapper ABSOLUTO para preencher o espaço de padding-bottom */
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+        }
+
+        /* O vídeo e o iframe preenchem o wrapper absoluto e respeitam a proporção */
+        .project-video,
+        .video-wrapper iframe {
+          /* É crucial que eles ocupem 100% do wrapper (que já está na proporção) */
+          width: 100%;
+          height: 100%;
+          /* Agora, como o contêiner (wrapper) já tem a proporção correta,
+             podemos usar 'contain' (para garantir que nada seja cortado) 
+             ou 'cover' (se você ainda quiser um pouco mais de preenchimento, 
+             mas o 'cover' não fará diferença aqui se o contêiner for 16:9).
+             Usaremos 'contain' ou 'fill' para garantir o vídeo inteiro,
+             mas como o contêiner já está na proporção, 'contain' preencherá sem barras.
+          */
+          object-fit: contain;
         }
 
         .project-overlay {
@@ -190,6 +299,8 @@ const ProjectsSection = () => {
           display: flex;
           gap: 1rem;
         }
+
+        /* ... (restante do CSS de links e badge permanece igual) ... */
 
         .project-link {
           width: 45px;
@@ -227,6 +338,7 @@ const ProjectsSection = () => {
           font-size: 0.75rem;
           font-weight: 600;
           box-shadow: 0 4px 12px rgba(206, 241, 123, 0.3);
+          z-index: 10;
         }
 
         .project-content {
@@ -301,10 +413,12 @@ const ProjectsSection = () => {
           gap: 0.5rem;
         }
 
-        /* Responsive Design */
+        /* *********************************************************
+         * Media Queries (Ajuste menor para celular)
+         * ********************************************************* */
         @media (max-width: 1024px) {
           .projects-grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
           }
         }
@@ -321,9 +435,8 @@ const ProjectsSection = () => {
             padding: 0 1rem;
           }
 
-          .project-image-container {
-            height: 180px;
-          }
+          /* Removendo ajuste de altura fixa, pois agora é proporcional */
+          /* .project-media-container { height: 220px; } */
 
           .project-content {
             padding: 1.25rem;
@@ -356,9 +469,8 @@ const ProjectsSection = () => {
             font-size: 0.85rem;
           }
 
-          .project-image-container {
-            height: 160px;
-          }
+          /* Removendo ajuste de altura fixa, pois agora é proporcional */
+          /* .project-media-container { height: 200px; } */
 
           .featured-badge {
             top: 0.6rem;
@@ -366,6 +478,11 @@ const ProjectsSection = () => {
             padding: 0.3rem 0.6rem;
             font-size: 0.7rem;
           }
+        }
+
+        @media (max-width: 360px) {
+          /* Removendo ajuste de altura fixa, pois agora é proporcional */
+          /* .project-media-container { height: 180px; } */
         }
       `}</style>
     </section>
