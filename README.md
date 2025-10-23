@@ -2,7 +2,7 @@
   <img src="images/curso.dev-logo.jpg" alt="Curso.dev Logo" width="200"/>
 </p>
 
-<h1 align="center">Clone-TabNews</h1>
+<h1 align="center">felipeparaizo.com.br</h1>
 
 <p align="center">
   <strong>Implementation of https://www.tabnews.com.br for https://curso.dev</strong><br>
@@ -12,12 +12,12 @@
 <p align="center">
   <a href="/README-PT.md" target="_blank">🇧🇷 Português</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/Fparaiz0/clone-tabnews/issues" target="_blank">🐛 Report Bug</a>
+  <a href="https://github.com/Fparaiz0/felipeparaizo.com.br/issues" target="_blank">🐛 Report Bug</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="https://github.com/Fparaiz0" target="_blank">💼 GitHub Profile</a>
 </p>
 
-**Clone-TabNews** is a platform that replicates the TabNews experience, enabling developers to create and share content, ideas, and discussions in a simple, modern, and fully customizable way.
+**felipeparaizo.com.br** is a platform that replicates the TabNews experience, enabling developers to create and share content, ideas, and discussions in a simple, modern, and fully customizable way.
 
 ## 🛠️ Technologies Used
 
