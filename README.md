@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/curso.dev-logo.jpg" alt="Curso.dev Logo" width="200"/>
+  <img src="images/fp-logo.png" alt="Curso.dev Logo" width="200"/>
 </p>
 
 <h1 align="center">felipeparaizo.com.br</h1>
