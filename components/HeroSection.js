@@ -163,6 +163,8 @@ const HeroSection = React.forwardRef((props, ref) => {
                     <span className="string">'Docker'</span>
                     <span className="comma">, </span>
                     <span className="string">'Jest'</span>
+                    <span className="comma">, </span>
+                    <span className="string">'Composer'</span>
                     <span className="bracket">]</span>
                   </div>
 
