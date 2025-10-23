@@ -13,6 +13,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
@@ -76,9 +77,19 @@ export default function Home() {
       }
     };
 
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [homeRef, aboutRef, projectsRef, experienceRef, contactRef]);
 
@@ -88,6 +99,33 @@ export default function Home() {
 
   return (
     <div className="portfolio">
+      {/* Componente de Partículas Expandido */}
+      <div className="particles">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+      </div>
+
+      {/* Camadas de onda animadas */}
+      <div className="wave-layer wave-1"></div>
+      <div className="wave-layer wave-2"></div>
+      <div className="wave-layer wave-3"></div>
+
+      {/* Elementos flutuantes */}
+      <div className="floating-element element-1"></div>
+      <div className="floating-element element-2"></div>
+      <div className="floating-element element-3"></div>
+      <div className="floating-element element-4"></div>
+
       <Head>
         <title>Felipe Paraizo | Desenvolvedor Full Stack</title>
         <meta
@@ -121,7 +159,6 @@ export default function Home() {
 
       <style jsx global>{`
         :root {
-          /* Nova paleta de cores baseada no DesignShala */
           --primary-green: #084734;
           --primary-green-dark: #063626;
           --primary-green-light: #0a5942;
@@ -132,7 +169,6 @@ export default function Home() {
           --secondary-mint-dark: #b4d49a;
           --secondary-mint-light: #e2f4d0;
 
-          /* Cores neutras adaptadas */
           --dark: #0a1f18;
           --darker: #05140f;
           --light: #f8faf9;
@@ -141,14 +177,6 @@ export default function Home() {
           --gray-dark: #64746b;
           --success: #10b981;
 
-          /* Mantendo algumas cores para consistência */
-          --primary: var(--primary-green);
-          --primary-dark: var(--primary-green-dark);
-          --primary-light: var(--primary-green-light);
-          --accent: var(--accent-lime);
-          --secondary: var(--secondary-mint);
-
-          /* Variáveis de design */
           --border-radius: 12px;
           --shadow-sm: 0 1px 2px 0 rgba(4, 71, 52, 0.05);
           --shadow:
@@ -190,7 +218,6 @@ export default function Home() {
           min-height: 100vh;
         }
 
-        /* Estrutura principal */
         .portfolio {
           min-height: 100vh;
           position: relative;
@@ -200,15 +227,15 @@ export default function Home() {
             var(--dark) 50%,
             var(--darker) 100%
           );
+          overflow: hidden;
         }
 
         .main-content {
           position: relative;
-          z-index: 1;
+          z-index: 10;
           width: 100%;
         }
 
-        /* NOVO BACKGROUND COM AS CORES DO DESIGNSHALA */
         .portfolio::before {
           content: "";
           position: fixed;
@@ -217,38 +244,44 @@ export default function Home() {
           width: 100%;
           height: 100%;
           background:
-            /* Gradientes principais com a nova paleta */
             radial-gradient(
-              circle at 15% 50%,
-              rgba(8, 71, 52, 0.15) 0%,
+              circle at ${mousePosition.x}% ${mousePosition.y}%,
+              rgba(8, 71, 52, 0.4) 0%,
               transparent 50%
             ),
             radial-gradient(
-              circle at 85% 30%,
-              rgba(206, 241, 123, 0.08) 0%,
+              circle at ${100 - mousePosition.x}% ${100 - mousePosition.y}%,
+              rgba(206, 241, 123, 0.2) 0%,
               transparent 50%
             ),
             radial-gradient(
-              circle at 50% 80%,
-              rgba(206, 237, 178, 0.05) 0%,
-              transparent 50%
+              circle at ${mousePosition.y}% ${mousePosition.x}%,
+              rgba(206, 237, 178, 0.15) 0%,
+              transparent 60%
             ),
-            /* Texturas sutis adicionais */
-              radial-gradient(
-                circle at 70% 20%,
-                rgba(10, 89, 66, 0.1) 0%,
-                transparent 40%
-              ),
             radial-gradient(
-              circle at 30% 70%,
-              rgba(184, 212, 106, 0.06) 0%,
+              circle at 20% 30%,
+              rgba(10, 89, 66, 0.3) 0%,
               transparent 40%
+            ),
+            radial-gradient(
+              circle at 80% 70%,
+              rgba(184, 212, 106, 0.2) 0%,
+              transparent 40%
+            ),
+            linear-gradient(
+              135deg,
+              rgba(5, 20, 15, 0.95) 0%,
+              rgba(8, 71, 52, 0.4) 50%,
+              rgba(5, 20, 15, 0.95) 100%
             );
-          z-index: 0;
+
+          z-index: 1;
           pointer-events: none;
+          animation: gradientOrbit 20s ease-in-out infinite;
+          transition: all 0.3s ease-out;
         }
 
-        /* Efeito de partículas sutis */
         .portfolio::after {
           content: "";
           position: fixed;
@@ -256,12 +289,26 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
-          background-image:
-            radial-gradient(
-              circle at 25% 25%,
-              rgba(206, 241, 123, 0.1) 2px,
-              transparent 2px
+          background-image: 
+            /* Linhas animadas */
+            linear-gradient(
+              45deg,
+              transparent 49%,
+              rgba(206, 241, 123, 0.04) 50%,
+              transparent 51%
             ),
+            linear-gradient(
+              -45deg,
+              transparent 49%,
+              rgba(206, 237, 178, 0.03) 50%,
+              transparent 51%
+            ),
+            /* Grid dinâmico */
+              radial-gradient(
+                circle at 25% 25%,
+                rgba(206, 241, 123, 0.1) 1px,
+                transparent 1px
+              ),
             radial-gradient(
               circle at 75% 75%,
               rgba(206, 237, 178, 0.08) 1px,
@@ -269,36 +316,377 @@ export default function Home() {
             ),
             radial-gradient(
               circle at 50% 50%,
-              rgba(8, 71, 52, 0.05) 3px,
-              transparent 3px
+              rgba(8, 71, 52, 0.15) 2px,
+              transparent 2px
             );
+
           background-size:
-            50px 50px,
-            30px 30px,
-            80px 80px;
-          z-index: 0;
+            80px 80px,
+            80px 80px,
+            150px 150px,
+            150px 150px,
+            200px 200px;
+
+          z-index: 1;
           pointer-events: none;
-          opacity: 0.4;
-          animation: floatParticles 20s ease-in-out infinite;
+          opacity: 0.6;
+          animation: geometricFlow 25s linear infinite;
         }
 
-        @keyframes floatParticles {
+        .wave-layer {
+          position: fixed;
+          width: 200%;
+          height: 200%;
+          opacity: 0.1;
+          z-index: 2;
+          pointer-events: none;
+          border-radius: 45%;
+        }
+
+        .wave-1 {
+          background: radial-gradient(
+            circle,
+            var(--accent-lime) 0%,
+            transparent 70%
+          );
+          top: -50%;
+          left: -50%;
+          animation: waveMove 15s ease-in-out infinite;
+        }
+
+        .wave-2 {
+          background: radial-gradient(
+            circle,
+            var(--secondary-mint) 0%,
+            transparent 70%
+          );
+          top: -60%;
+          left: -40%;
+          animation: waveMove 18s ease-in-out infinite reverse;
+          opacity: 0.08;
+        }
+
+        .wave-3 {
+          background: radial-gradient(
+            circle,
+            var(--primary-green-light) 0%,
+            transparent 70%
+          );
+          top: -40%;
+          left: -60%;
+          animation: waveMove 22s ease-in-out infinite;
+          opacity: 0.06;
+        }
+
+        /* Elementos flutuantes */
+        .floating-element {
+          position: fixed;
+          border-radius: 50%;
+          z-index: 3;
+          pointer-events: none;
+          filter: blur(1px);
+        }
+
+        .element-1 {
+          width: 120px;
+          height: 120px;
+          background: radial-gradient(
+            circle,
+            rgba(206, 241, 123, 0.1) 0%,
+            transparent 70%
+          );
+          top: 10%;
+          left: 5%;
+          animation: floatElement 25s ease-in-out infinite;
+        }
+
+        .element-2 {
+          width: 80px;
+          height: 80px;
+          background: radial-gradient(
+            circle,
+            rgba(206, 237, 178, 0.08) 0%,
+            transparent 70%
+          );
+          top: 70%;
+          left: 85%;
+          animation: floatElement 30s ease-in-out infinite reverse;
+        }
+
+        .element-3 {
+          width: 150px;
+          height: 150px;
+          background: radial-gradient(
+            circle,
+            rgba(8, 71, 52, 0.15) 0%,
+            transparent 70%
+          );
+          top: 50%;
+          left: 10%;
+          animation: floatElement 35s ease-in-out infinite;
+        }
+
+        .element-4 {
+          width: 100px;
+          height: 100px;
+          background: radial-gradient(
+            circle,
+            rgba(10, 89, 66, 0.12) 0%,
+            transparent 70%
+          );
+          top: 20%;
+          left: 80%;
+          animation: floatElement 28s ease-in-out infinite reverse;
+        }
+
+        .particles {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 4;
+          pointer-events: none;
+        }
+
+        .particle {
+          position: absolute;
+          border-radius: 50%;
+          animation: particleFloat 8s ease-in-out infinite;
+          opacity: 0.15;
+        }
+
+        .particle:nth-child(1) {
+          width: 6px;
+          height: 6px;
+          background: var(--accent-lime);
+          top: 15%;
+          left: 8%;
+          animation-delay: 0s;
+        }
+        .particle:nth-child(2) {
+          width: 8px;
+          height: 8px;
+          background: var(--secondary-mint);
+          top: 65%;
+          left: 82%;
+          animation-delay: -1s;
+        }
+        .particle:nth-child(3) {
+          width: 4px;
+          height: 4px;
+          background: var(--accent-lime-light);
+          top: 85%;
+          left: 15%;
+          animation-delay: -2s;
+        }
+        .particle:nth-child(4) {
+          width: 7px;
+          height: 7px;
+          background: var(--primary-green-light);
+          top: 35%;
+          left: 92%;
+          animation-delay: -0.5s;
+        }
+        .particle:nth-child(5) {
+          width: 5px;
+          height: 5px;
+          background: var(--accent-lime);
+          top: 12%;
+          left: 55%;
+          animation-delay: -1.5s;
+        }
+        .particle:nth-child(6) {
+          width: 3px;
+          height: 3px;
+          background: var(--secondary-mint-light);
+          top: 75%;
+          left: 25%;
+          animation-delay: -2.5s;
+        }
+        .particle:nth-child(7) {
+          width: 9px;
+          height: 9px;
+          background: var(--primary-green);
+          top: 45%;
+          left: 5%;
+          animation-delay: -3s;
+        }
+        .particle:nth-child(8) {
+          width: 5px;
+          height: 5px;
+          background: var(--accent-lime);
+          top: 90%;
+          left: 65%;
+          animation-delay: -1.2s;
+        }
+        .particle:nth-child(9) {
+          width: 6px;
+          height: 6px;
+          background: var(--secondary-mint);
+          top: 25%;
+          left: 75%;
+          animation-delay: -2.2s;
+        }
+        .particle:nth-child(10) {
+          width: 4px;
+          height: 4px;
+          background: var(--accent-lime-light);
+          top: 60%;
+          left: 45%;
+          animation-delay: -0.8s;
+        }
+        .particle:nth-child(11) {
+          width: 7px;
+          height: 7px;
+          background: var(--primary-green-light);
+          top: 5%;
+          left: 35%;
+          animation-delay: -1.8s;
+        }
+        .particle:nth-child(12) {
+          width: 8px;
+          height: 8px;
+          background: var(--secondary-mint-dark);
+          top: 80%;
+          left: 90%;
+          animation-delay: -2.8s;
+        }
+
+        /* ANIMAÇÕES AVANÇADAS */
+        @keyframes gradientOrbit {
           0%,
           100% {
-            transform: translateY(0px) rotate(0deg);
+            transform: rotate(0deg) scale(1);
+            filter: hue-rotate(0deg) blur(0px);
           }
-          33% {
-            transform: translateY(-20px) rotate(120deg);
+          25% {
+            transform: rotate(1deg) scale(1.02);
+            filter: hue-rotate(10deg) blur(1px);
           }
-          66% {
-            transform: translateY(10px) rotate(240deg);
+          50% {
+            transform: rotate(-1deg) scale(1.01);
+            filter: hue-rotate(-5deg) blur(0.5px);
+          }
+          75% {
+            transform: rotate(0.5deg) scale(1.03);
+            filter: hue-rotate(5deg) blur(0.8px);
           }
         }
 
-        /* Garantindo que o conteúdo fique acima do background */
+        @keyframes geometricFlow {
+          0% {
+            background-position:
+              0% 0%,
+              0% 0%,
+              0% 0%,
+              0% 0%,
+              0% 0%;
+          }
+          100% {
+            background-position:
+              100px 100px,
+              -100px -100px,
+              300px 300px,
+              -300px -300px,
+              400px 400px;
+          }
+        }
+
+        @keyframes waveMove {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+          }
+          25% {
+            transform: translate(-5%, 3%) rotate(2deg) scale(1.1);
+          }
+          50% {
+            transform: translate(3%, -2%) rotate(-1deg) scale(1.05);
+          }
+          75% {
+            transform: translate(-2%, 4%) rotate(1deg) scale(1.08);
+          }
+        }
+
+        @keyframes floatElement {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            opacity: 0.3;
+          }
+          20% {
+            transform: translate(30px, -20px) rotate(5deg) scale(1.1);
+            opacity: 0.5;
+          }
+          40% {
+            transform: translate(-20px, 30px) rotate(-3deg) scale(0.9);
+            opacity: 0.4;
+          }
+          60% {
+            transform: translate(25px, 15px) rotate(2deg) scale(1.05);
+            opacity: 0.6;
+          }
+          80% {
+            transform: translate(-15px, -25px) rotate(-4deg) scale(0.95);
+            opacity: 0.4;
+          }
+        }
+
+        @keyframes particleFloat {
+          0%,
+          100% {
+            transform: translateY(0px) translateX(0px) scale(1);
+            opacity: 0.1;
+          }
+          20% {
+            transform: translateY(-40px) translateX(20px) scale(1.2);
+            opacity: 0.2;
+          }
+          40% {
+            transform: translateY(20px) translateX(-30px) scale(0.8);
+            opacity: 0.3;
+          }
+          60% {
+            transform: translateY(-25px) translateX(15px) scale(1.1);
+            opacity: 0.25;
+          }
+          80% {
+            transform: translateY(10px) translateX(-20px) scale(0.9);
+            opacity: 0.15;
+          }
+        }
+
+        .main-content::before {
+          content: "";
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(
+            circle at ${mousePosition.x}% ${mousePosition.y}%,
+            rgba(206, 241, 123, 0.08) 0%,
+            transparent 50%
+          );
+          z-index: 5;
+          pointer-events: none;
+          animation: glowSweep 6s ease-in-out infinite;
+        }
+
+        @keyframes glowSweep {
+          0%,
+          100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.6;
+          }
+        }
+
         .main-content > * {
           position: relative;
-          z-index: 2;
+          z-index: 20;
         }
 
         ::selection {
@@ -306,7 +694,6 @@ export default function Home() {
           color: var(--primary-green);
         }
 
-        /* Container principal */
         .container {
           max-width: 1200px;
           margin: 0 auto;
@@ -314,8 +701,6 @@ export default function Home() {
         }
 
         /* SEÇÕES - ESPAÇAMENTO HIERARQUIZADO */
-
-        /* Hero tem espaçamento maior */
         .hero-section {
           padding: 8rem 0 6rem 0;
           min-height: 100vh;
@@ -323,22 +708,18 @@ export default function Home() {
           align-items: center;
         }
 
-        /* Seções principais */
         .main-section {
           padding: 5rem 0;
         }
 
-        /* Seções secundárias */
         .secondary-section {
           padding: 4rem 0;
         }
 
-        /* Seção de contato menor */
         .contact-section {
           padding: 3rem 0;
         }
 
-        /* Títulos das seções - COM NOVAS CORES */
         .section-title {
           font-size: 2.75rem;
           font-weight: 700;
@@ -371,7 +752,6 @@ export default function Home() {
           border-radius: 2px;
         }
 
-        /* Subtítulos */
         .section-subtitle {
           font-size: 1.25rem;
           color: var(--gray-light);
@@ -383,7 +763,6 @@ export default function Home() {
           line-height: 1.6;
         }
 
-        /* Grid e layouts */
         .grid-container {
           display: grid;
           gap: 2rem;
@@ -398,11 +777,10 @@ export default function Home() {
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
 
-        /* Cards - COM NOVAS CORES */
         .card {
-          background: rgba(10, 31, 24, 0.7);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(206, 241, 123, 0.1);
+          background: rgba(10, 31, 24, 0.8);
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(206, 241, 123, 0.15);
           border-radius: var(--border-radius);
           padding: 2rem;
           transition: all 0.3s ease;
@@ -427,11 +805,11 @@ export default function Home() {
         }
 
         .card:hover {
-          transform: translateY(-5px);
-          border-color: rgba(206, 241, 123, 0.3);
+          transform: translateY(-8px);
+          border-color: rgba(206, 241, 123, 0.4);
           box-shadow:
-            0 10px 30px rgba(8, 71, 52, 0.2),
-            0 5px 15px rgba(206, 241, 123, 0.1);
+            0 20px 40px rgba(8, 71, 52, 0.3),
+            0 10px 20px rgba(206, 241, 123, 0.2);
         }
 
         .card-small {
@@ -454,7 +832,6 @@ export default function Home() {
           margin-top: auto;
         }
 
-        /* Botões - COM NOVAS CORES */
         .btn {
           display: inline-flex;
           align-items: center;
@@ -538,7 +915,6 @@ export default function Home() {
           box-shadow: 0 8px 25px rgba(206, 241, 123, 0.2);
         }
 
-        /* Listas */
         .list {
           list-style: none;
           margin: 1.5rem 0;
@@ -556,7 +932,6 @@ export default function Home() {
           border-bottom: none;
         }
 
-        /* Textos e parágrafos */
         .text-lead {
           font-size: 1.25rem;
           line-height: 1.7;
@@ -576,8 +951,6 @@ export default function Home() {
           line-height: 1.5;
           color: var(--gray);
         }
-
-        /* RESPONSIVIDADE */
 
         @media (max-width: 768px) {
           .container {
@@ -624,23 +997,16 @@ export default function Home() {
             padding: 2rem;
           }
 
-          /* Background mais simples para mobile */
-          .portfolio::before {
-            background:
-              radial-gradient(
-                circle at 10% 20%,
-                rgba(8, 71, 52, 0.15) 0%,
-                transparent 40%
-              ),
-              radial-gradient(
-                circle at 90% 20%,
-                rgba(206, 241, 123, 0.08) 0%,
-                transparent 40%
-              );
+          .portfolio::before,
+          .portfolio::after,
+          .wave-layer,
+          .floating-element {
+            animation-duration: 40s;
+            opacity: 0.3;
           }
 
-          .portfolio::after {
-            opacity: 0.2;
+          .particles {
+            display: none;
           }
         }
 
@@ -674,9 +1040,13 @@ export default function Home() {
             width: 100%;
             justify-content: center;
           }
+
+          .portfolio::before,
+          .portfolio::after {
+            animation: none;
+          }
         }
 
-        /* Utilitários de espaçamento */
         .mb-1 {
           margin-bottom: 0.5rem;
         }
