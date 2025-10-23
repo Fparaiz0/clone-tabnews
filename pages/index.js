@@ -13,6 +13,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const mousePosition = useRef({ x: 50, y: 50 });
   const rafId = useRef(null);
@@ -38,26 +39,42 @@ export default function Home() {
     }
   };
 
-  const handleMouseMove = useCallback((e) => {
-    const now = Date.now();
-    if (now - lastUpdate.current < 16) return;
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (isMobile) return;
 
-    lastUpdate.current = now;
+      const now = Date.now();
+      if (now - lastUpdate.current < 16) return;
 
-    if (rafId.current) {
-      cancelAnimationFrame(rafId.current);
-    }
+      lastUpdate.current = now;
 
-    rafId.current = requestAnimationFrame(() => {
-      mousePosition.current = {
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      };
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
 
-      const root = document.documentElement;
-      root.style.setProperty("--mouse-x", `${mousePosition.current.x}%`);
-      root.style.setProperty("--mouse-y", `${mousePosition.current.y}%`);
-    });
+      rafId.current = requestAnimationFrame(() => {
+        mousePosition.current = {
+          x: (e.clientX / window.innerWidth) * 100,
+          y: (e.clientY / window.innerHeight) * 100,
+        };
+
+        const root = document.documentElement;
+        root.style.setProperty("--mouse-x", `${mousePosition.current.x}%`);
+        root.style.setProperty("--mouse-y", `${mousePosition.current.y}%`);
+      });
+    },
+    [isMobile],
+  );
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -103,7 +120,10 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -119,6 +139,7 @@ export default function Home() {
     experienceRef,
     contactRef,
     handleMouseMove,
+    isMobile,
   ]);
 
   if (isLoading) {
@@ -127,25 +148,29 @@ export default function Home() {
 
   return (
     <div className="portfolio">
-      <div className="particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-      </div>
+      {!isMobile && (
+        <>
+          <div className="particles">
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+          </div>
 
-      <div className="wave-layer wave-1"></div>
-      <div className="wave-layer wave-2"></div>
-      <div className="wave-layer wave-3"></div>
+          <div className="wave-layer wave-1"></div>
+          <div className="wave-layer wave-2"></div>
+          <div className="wave-layer wave-3"></div>
 
-      <div className="floating-element element-1"></div>
-      <div className="floating-element element-2"></div>
-      <div className="floating-element element-3"></div>
-      <div className="floating-element element-4"></div>
+          <div className="floating-element element-1"></div>
+          <div className="floating-element element-2"></div>
+          <div className="floating-element element-3"></div>
+          <div className="floating-element element-4"></div>
+        </>
+      )}
 
       <Head>
         <title>Felipe Paraizo | Desenvolvedor Full Stack</title>
@@ -269,6 +294,11 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .desktop-bg {
           background:
             radial-gradient(
               circle at var(--mouse-x) var(--mouse-y),
@@ -301,10 +331,27 @@ export default function Home() {
               rgba(8, 71, 52, 0.4) 50%,
               rgba(5, 20, 15, 0.85) 100%
             );
-          z-index: 1;
-          pointer-events: none;
           animation: gradientShift 20s ease-in-out infinite;
-          will-change: transform;
+        }
+
+        .mobile-bg {
+          background:
+            radial-gradient(
+              circle at 20% 30%,
+              rgba(8, 71, 52, 0.3) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 80% 70%,
+              rgba(206, 241, 123, 0.2) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 40% 80%,
+              rgba(206, 237, 178, 0.15) 0%,
+              transparent 60%
+            ),
+            linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
         }
 
         .portfolio::after {
@@ -314,6 +361,11 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .desktop-pattern {
           background-image:
             linear-gradient(
               45deg,
@@ -348,11 +400,18 @@ export default function Home() {
             150px 150px,
             150px 150px,
             200px 200px;
-          z-index: 1;
-          pointer-events: none;
           opacity: 0.5;
           animation: geometricFlow 25s linear infinite;
-          will-change: transform;
+        }
+
+        .mobile-pattern {
+          background-image: radial-gradient(
+            circle at 50% 50%,
+            rgba(206, 241, 123, 0.1) 1px,
+            transparent 1px
+          );
+          background-size: 80px 80px;
+          opacity: 0.3;
         }
 
         .wave-layer {
@@ -644,36 +703,6 @@ export default function Home() {
           }
         }
 
-        .main-content::before {
-          content: "";
-          position: fixed;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(
-            circle at center,
-            rgba(206, 241, 123, 0.08) 0%,
-            rgba(206, 237, 178, 0.05) 25%,
-            transparent 70%
-          );
-          z-index: 5;
-          pointer-events: none;
-          animation: glowPulse 8s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-          0%,
-          100% {
-            opacity: 0.4;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.6;
-            transform: scale(1.1);
-          }
-        }
-
         .main-content > * {
           position: relative;
           z-index: 20;
@@ -941,6 +970,84 @@ export default function Home() {
           color: var(--gray);
         }
 
+        @media (min-width: 769px) {
+          .portfolio::before {
+            background:
+              radial-gradient(
+                circle at var(--mouse-x) var(--mouse-y),
+                rgba(8, 71, 52, 0.4) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                circle at calc(100% - var(--mouse-x))
+                  calc(100% - var(--mouse-y)),
+                rgba(206, 241, 123, 0.25) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                circle at var(--mouse-y) var(--mouse-x),
+                rgba(206, 237, 178, 0.2) 0%,
+                transparent 60%
+              ),
+              radial-gradient(
+                circle at 20% 30%,
+                rgba(10, 89, 66, 0.3) 0%,
+                transparent 40%
+              ),
+              radial-gradient(
+                circle at 80% 70%,
+                rgba(184, 212, 106, 0.2) 0%,
+                transparent 40%
+              ),
+              linear-gradient(
+                135deg,
+                rgba(5, 20, 15, 0.85) 0%,
+                rgba(8, 71, 52, 0.4) 50%,
+                rgba(5, 20, 15, 0.85) 100%
+              );
+            animation: gradientShift 20s ease-in-out infinite;
+          }
+
+          .portfolio::after {
+            background-image:
+              linear-gradient(
+                45deg,
+                transparent 49%,
+                rgba(206, 241, 123, 0.04) 50%,
+                transparent 51%
+              ),
+              linear-gradient(
+                -45deg,
+                transparent 49%,
+                rgba(206, 237, 178, 0.03) 50%,
+                transparent 51%
+              ),
+              radial-gradient(
+                circle at 0% 25%,
+                rgba(206, 241, 123, 0.1) 1px,
+                transparent 1px
+              ),
+              radial-gradient(
+                circle at 50% 75%,
+                rgba(206, 237, 178, 0.08) 1px,
+                transparent 1px
+              ),
+              radial-gradient(
+                circle at 100% 25%,
+                rgba(8, 71, 52, 0.15) 2px,
+                transparent 2px
+              );
+            background-size:
+              80px 80px,
+              80px 80px,
+              150px 150px,
+              150px 150px,
+              200px 200px;
+            opacity: 0.5;
+            animation: geometricFlow 25s linear infinite;
+          }
+        }
+
         @media (max-width: 768px) {
           .container {
             padding: 0 1.5rem;
@@ -986,16 +1093,35 @@ export default function Home() {
             padding: 2rem;
           }
 
-          .portfolio::before,
-          .portfolio::after,
-          .wave-layer,
-          .floating-element {
-            animation-duration: 40s;
-            opacity: 0.4;
+          .portfolio::before {
+            background:
+              radial-gradient(
+                circle at 20% 30%,
+                rgba(8, 71, 52, 0.3) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                circle at 80% 70%,
+                rgba(206, 241, 123, 0.2) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                circle at 40% 80%,
+                rgba(206, 237, 178, 0.15) 0%,
+                transparent 60%
+              ),
+              linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
           }
 
-          .particles {
-            display: none;
+          .portfolio::after {
+            background-image: radial-gradient(
+              circle at 50% 50%,
+              rgba(206, 241, 123, 0.1) 1px,
+              transparent 1px
+            );
+            background-size: 80px 80px;
+            opacity: 0.3;
+            animation: none;
           }
         }
 
@@ -1028,11 +1154,6 @@ export default function Home() {
           .btn {
             width: 100%;
             justify-content: center;
-          }
-
-          .portfolio::before,
-          .portfolio::after {
-            animation: none;
           }
         }
 
