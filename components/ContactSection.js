@@ -20,7 +20,7 @@ const ContactSection = () => {
     setStatus("Enviando...");
 
     try {
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/v1/send/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
