@@ -1,5 +1,4 @@
 import database from "infra/database";
-import { version } from "react";
 
 async function status(request, response) {
   const updatedAt = new Date().toISOString();

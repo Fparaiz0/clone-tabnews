@@ -1,9 +1,10 @@
 import React from "react";
+import Image from "next/image";
 
 const ProjectsSection = () => {
   const getYouTubeEmbedUrl = (url) => {
     const regExp =
-      /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|)([^\&\?\%]{11})(?:[\?&][^\s]*)*$/;
+      /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|)([^&?%]{11})(?:[?&][^\s]*)*$/;
     const match = url.match(regExp);
     // Nota: Os parâmetros de autoplay, mute e loop já garantem a experiência de fundo.
     return match && match[1]
@@ -92,7 +93,7 @@ const ProjectsSection = () => {
                       </video>
                     </div>
                   ) : (
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
                       className="project-image"

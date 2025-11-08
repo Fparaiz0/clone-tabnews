@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navigation = ({ activeSection, isMenuOpen, setIsMenuOpen }) => {
+const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
     <nav className="navigation">
       <div className="nav-container">
