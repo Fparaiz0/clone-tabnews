@@ -6,21 +6,21 @@ const HeroSection = React.forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const texts = [
-    "Desenvolvedor Full Stack",
-    "Especialista em Php/Laravel",
-    "Entusiasmado por Next.js",
-    "Fascinado por Banco de Dados",
-    "Experiente em API'S",
-    "Focado em Performance",
-    "Transformando Ideias em Código",
-  ];
-
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   useEffect(() => {
+    const texts = [
+      "Desenvolvedor Full Stack",
+      "Especialista em Php/Laravel",
+      "Entusiasmado por Next.js",
+      "Fascinado por Banco de Dados",
+      "Experiente em API'S",
+      "Focado em Performance",
+      "Transformando Ideias em Código",
+    ];
+
     const currentString = texts[currentIndex];
 
     if (!isDeleting && currentText === currentString) {
@@ -48,7 +48,7 @@ const HeroSection = React.forwardRef((props, ref) => {
     );
 
     return () => clearTimeout(timeout);
-  }, [currentText, currentIndex, isDeleting, texts]);
+  }, [currentText, currentIndex, isDeleting]);
 
   return (
     <section
@@ -130,11 +130,11 @@ const HeroSection = React.forwardRef((props, ref) => {
                     <span className="property">frontend</span>
                     <span className="operator">: </span>
                     <span className="bracket">[</span>
-                    <span className="string">'React'</span>
+                    <span className="string">&apos;React&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Next.js'</span>
+                    <span className="string">&apos;Next.js&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Tailwind CSS'</span>
+                    <span className="string">&apos;Tailwind CSS&apos;</span>
                     <span className="bracket">]</span>
                     <span className="comma">,</span>
                   </div>
@@ -143,13 +143,13 @@ const HeroSection = React.forwardRef((props, ref) => {
                     <span className="property">backend</span>
                     <span className="operator">: </span>
                     <span className="bracket">[</span>
-                    <span className="string">'Node.js'</span>
+                    <span className="string">&apos;Node.js&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Php'</span>
+                    <span className="string">&apos;Php&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'PostgreSQL'</span>
+                    <span className="string">&apos;PostgreSQL&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'MySQL'</span>
+                    <span className="string">&apos;MySQL&apos;</span>
                     <span className="bracket">]</span>
                     <span className="comma">,</span>
                   </div>
@@ -158,13 +158,13 @@ const HeroSection = React.forwardRef((props, ref) => {
                     <span className="property">tools</span>
                     <span className="operator">: </span>
                     <span className="bracket">[</span>
-                    <span className="string">'Git'</span>
+                    <span className="string">&apos;Git&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Docker'</span>
+                    <span className="string">&apos;Docker&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Jest'</span>
+                    <span className="string">&apos;Jest&apos;</span>
                     <span className="comma">, </span>
-                    <span className="string">'Composer'</span>
+                    <span className="string">&apos;Composer&apos;</span>
                     <span className="bracket">]</span>
                   </div>
 

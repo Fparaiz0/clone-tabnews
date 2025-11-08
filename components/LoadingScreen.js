@@ -5,15 +5,7 @@ const LoadingScreen = () => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const loadingTexts = [
-    "Inicializando portfólio...",
-    "Carregando experiências...",
-    "Preparando projetos...",
-    "Quase pronto...",
-  ];
-
   useEffect(() => {
-    // Simula progresso de carregamento
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -28,7 +20,13 @@ const LoadingScreen = () => {
   }, []);
 
   useEffect(() => {
-    // Efeito de digitação para os textos
+    const loadingTexts = [
+      "Inicializando portfólio...",
+      "Carregando experiências...",
+      "Preparando projetos...",
+      "Quase pronto...",
+    ];
+
     if (progress < 100) {
       const currentString = loadingTexts[currentIndex];
 
@@ -45,7 +43,7 @@ const LoadingScreen = () => {
         return () => clearTimeout(timeout);
       }
     }
-  }, [currentText, currentIndex, progress, loadingTexts]);
+  }, [currentText, currentIndex, progress]);
 
   return (
     <div className="loading-screen">
