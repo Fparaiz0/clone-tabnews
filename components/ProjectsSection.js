@@ -6,7 +6,6 @@ const ProjectsSection = () => {
     const regExp =
       /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|)([^&?%]{11})(?:[?&][^\s]*)*$/;
     const match = url.match(regExp);
-    // Nota: Os parâmetros de autoplay, mute e loop já garantem a experiência de fundo.
     return match && match[1]
       ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1&loop=1&playlist=${match[1]}&controls=0`
       : null;
@@ -23,7 +22,7 @@ const ProjectsSection = () => {
       title: "Pré-Postagem MagnoJet",
       description:
         "Esta plataforma foi desenvolvida para a empresa MagnoJet e tem como objetivo realizar a pré-postagem através das APIs oficiais dos Correios, oferecendo um fluxo simples, seguro e eficiente para geração de PLPs, etiquetas e integração logística.",
-      image: "/videos/magnojet.mp4", // URL de vídeo local (16:9)
+      image: "/videos/magnojet.mp4",
       technologies: [
         "Laravel 12",
         "Php",
@@ -35,15 +34,22 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/Fparaiz0/prepostagem_magnojet",
       featured: true,
     },
-    // Você pode adicionar um projeto com link do YouTube aqui para testar o iframe
-    // {
-    //   title: "Youtube Test",
-    //   description: "Teste de responsividade com embed do YouTube.",
-    //   image: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    //   technologies: ["React", "CSS"],
-    //   githubUrl: "#",
-    //   featured: false,
-    // },
+    {
+      title: "felipeparaizo.com.br",
+      description:
+        "Este projeto esta sendo desenvolvido com o objetivo de criar um clone da plataforma TabNews, uma rede social voltada para tecnologia e programação. Além de replicar as funcionalidades dessa plataforma, o projeto também tem como principal objetivo ser um portfólio pessoal.",
+      image: "/videos/felipeparaizo.mp4",
+      technologies: [
+        "JavaScript",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
+        "CI/CD",
+        "Jest",
+      ],
+      githubUrl: "https://github.com/Fparaiz0/felipeparaizo.com.br",
+      featured: true,
+    },
   ];
 
   return (
@@ -213,21 +219,14 @@ const ProjectsSection = () => {
             0 12px 25px rgba(206, 241, 123, 0.15);
         }
 
-        /* *********************************************************
-         * ALTERAÇÃO CHAVE: USO DA TÉCNICA DE ASPECT RATIO (16:9)
-         * ********************************************************* */
         .project-media-container {
           position: relative;
           overflow: hidden;
 
-          /* 1. Remove a altura fixa e usa a largura total */
           width: 100%;
-          /* 2. Força a proporção 16:9 através de padding-bottom (9/16 = 56.25%) */
           padding-bottom: 56.25%;
-          /* 3. A altura real é 0, o padding cria o espaço */
           height: 0;
 
-          /* Não precisamos mais desses, mas os mantemos se as imagens forem usadas */
           display: flex;
           align-items: center;
           justify-content: center;
@@ -235,7 +234,6 @@ const ProjectsSection = () => {
         }
 
         .project-image {
-          /* A imagem cobre o espaço gerado pelo padding, como na solução anterior */
           position: absolute;
           top: 0;
           left: 0;
@@ -250,7 +248,6 @@ const ProjectsSection = () => {
         }
 
         .video-wrapper {
-          /* Torna o wrapper ABSOLUTO para preencher o espaço de padding-bottom */
           position: absolute;
           top: 0;
           left: 0;
@@ -262,19 +259,10 @@ const ProjectsSection = () => {
           background: transparent;
         }
 
-        /* O vídeo e o iframe preenchem o wrapper absoluto e respeitam a proporção */
         .project-video,
         .video-wrapper iframe {
-          /* É crucial que eles ocupem 100% do wrapper (que já está na proporção) */
           width: 100%;
           height: 100%;
-          /* Agora, como o contêiner (wrapper) já tem a proporção correta,
-             podemos usar 'contain' (para garantir que nada seja cortado) 
-             ou 'cover' (se você ainda quiser um pouco mais de preenchimento, 
-             mas o 'cover' não fará diferença aqui se o contêiner for 16:9).
-             Usaremos 'contain' ou 'fill' para garantir o vídeo inteiro,
-             mas como o contêiner já está na proporção, 'contain' preencherá sem barras.
-          */
           object-fit: contain;
         }
 
@@ -300,8 +288,6 @@ const ProjectsSection = () => {
           display: flex;
           gap: 1rem;
         }
-
-        /* ... (restante do CSS de links e badge permanece igual) ... */
 
         .project-link {
           width: 45px;
@@ -414,9 +400,6 @@ const ProjectsSection = () => {
           gap: 0.5rem;
         }
 
-        /* *********************************************************
-         * Media Queries (Ajuste menor para celular)
-         * ********************************************************* */
         @media (max-width: 1024px) {
           .projects-grid {
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -435,9 +418,6 @@ const ProjectsSection = () => {
             margin-top: 2rem;
             padding: 0 1rem;
           }
-
-          /* Removendo ajuste de altura fixa, pois agora é proporcional */
-          /* .project-media-container { height: 220px; } */
 
           .project-content {
             padding: 1.25rem;
@@ -470,9 +450,6 @@ const ProjectsSection = () => {
             font-size: 0.85rem;
           }
 
-          /* Removendo ajuste de altura fixa, pois agora é proporcional */
-          /* .project-media-container { height: 200px; } */
-
           .featured-badge {
             top: 0.6rem;
             right: 0.6rem;
@@ -482,8 +459,6 @@ const ProjectsSection = () => {
         }
 
         @media (max-width: 360px) {
-          /* Removendo ajuste de altura fixa, pois agora é proporcional */
-          /* .project-media-container { height: 180px; } */
         }
       `}</style>
     </section>
