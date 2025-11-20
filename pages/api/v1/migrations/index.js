@@ -12,6 +12,8 @@ export default async function migrations(request, response) {
 
   let dbClient;
 
+  let dbClient;
+
   try {
     dbClient = await database.getNewClient();
 
