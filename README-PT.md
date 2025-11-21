@@ -2,7 +2,9 @@
   <img src="images/fp-logo.png" alt="logo-FP" width="200"/>
 </p>
 
-<h1 align="center">felipeparaizo.com.br</h1>
+<h1 align="center">
+  <a href='https://felipeparaizo.com.br'>felipeparaizo.com.br</a>  
+</h1>
 
 <p align="center">
   <strong>Implementação do https://www.tabnews.com.br para o https://curso.dev</strong><br>
