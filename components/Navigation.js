@@ -48,7 +48,7 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
           top: 0;
           left: 0;
           width: 100%;
-          background: rgba(5, 20, 15, 0.9);
+          background: rgba(1, 26, 17, 0.29);
           backdrop-filter: blur(20px);
           border-bottom: 1px solid rgba(206, 241, 123, 0.1);
           z-index: 1000;

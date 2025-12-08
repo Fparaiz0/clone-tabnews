@@ -17,11 +17,9 @@ const Footer = () => {
 
       <style jsx>{`
         .footer {
-          background: var(--dark);
           padding: 2rem 0;
           text-align: center;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
-          color: var(--gray);
+          color: var(--light);
           font-size: 0.9rem;
         }
 
@@ -39,7 +37,7 @@ const Footer = () => {
         }
 
         .footer-links a {
-          color: var(--gray);
+          color: var(--light);
           text-decoration: none;
           transition: color 0.3s ease;
         }

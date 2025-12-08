@@ -148,8 +148,7 @@ const ExperienceSection = () => {
 
       <style jsx>{`
         .experience {
-          padding: 5rem 0;
-          background: rgba(5, 20, 15, 0.2);
+          padding: 3rem 0;
           position: relative;
         }
 

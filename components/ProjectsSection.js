@@ -183,8 +183,7 @@ const ProjectsSection = () => {
 
       <style jsx>{`
         .projects {
-          padding: 4rem 0;
-          background: rgba(5, 20, 15, 0.3);
+          padding: 3rem 0;
         }
 
         .projects-grid {
