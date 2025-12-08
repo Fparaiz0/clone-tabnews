@@ -450,12 +450,12 @@ const HeroSection = React.forwardRef((props, ref) => {
             var(--primary-blue-dark)
           );
           color: white;
-          box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+          box-shadow: 0 8px 25px rgba(1, 19, 2, 0.3);
         }
 
         .btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+          box-shadow: 0 8px 25px rgba(1, 19, 2, 0.3);
         }
 
         .btn-secondary {
