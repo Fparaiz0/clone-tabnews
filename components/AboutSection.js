@@ -276,9 +276,6 @@ const AboutSection = () => {
           box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
         }
 
-        /* --- Media Queries --- */
-
-        /* Tablet (1024px e abaixo) */
         @media (max-width: 1024px) {
           .about-content {
             gap: 3rem;
@@ -307,7 +304,6 @@ const AboutSection = () => {
           }
         }
 
-        /* Mobile (768px e abaixo) */
         @media (max-width: 768px) {
           .about-details {
             grid-template-columns: 1fr;
@@ -323,7 +319,6 @@ const AboutSection = () => {
           }
         }
 
-        /* Extra Small Mobile (480px e abaixo) */
         @media (max-width: 480px) {
           .skills-grid {
             grid-template-columns: 1fr;

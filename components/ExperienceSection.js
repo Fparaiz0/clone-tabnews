@@ -308,7 +308,6 @@ const ExperienceSection = () => {
           transform: translateY(-1px);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
           .experience {
             padding: 3rem 0;
@@ -395,7 +394,6 @@ const ExperienceSection = () => {
           }
         }
 
-        /* Animações suaves */
         .timeline-item {
           animation: fadeInUp 0.6s ease-out;
           animation-fill-mode: both;

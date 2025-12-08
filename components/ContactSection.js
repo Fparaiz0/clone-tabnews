@@ -547,7 +547,6 @@ const ContactSection = () => {
           border: 1px solid rgba(239, 68, 68, 0.3);
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
           .contact-content {
             gap: 3rem;
