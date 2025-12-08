@@ -21,13 +21,13 @@ const ProjectsSection = () => {
     {
       title: "Pré-Postagem MagnoJet",
       description:
-        "Esta plataforma foi desenvolvida para a empresa MagnoJet e tem como objetivo realizar a pré-postagem através das APIs oficiais dos Correios, oferecendo um fluxo simples, seguro e eficiente para geração de PLPs, etiquetas e integração logística.",
+        "Esta plataforma foi desenvolvida para a empresa <a href='https://www.magnojet.com.br' class='description-link' target='_blank' rel='noopener noreferrer'>MagnoJet</a> e tem como objetivo realizar a pré-postagem através das APIs oficiais dos <a href='https://www.correios.com.br' class='description-link' target='_blank' rel='noopener noreferrer'>Correios</a>, oferecendo um fluxo simples, seguro e eficiente para geração de PLPs, etiquetas e integração logística.",
       image: "/videos/magnojet.mp4",
       technologies: [
         "Laravel 12",
         "Php",
         "MySQL",
-        "Compose",
+        "Composer",
         "Tailwind CSS",
         "Node.js",
       ],
@@ -37,12 +37,13 @@ const ProjectsSection = () => {
     {
       title: "felipeparaizo.com.br",
       description:
-        "Este projeto esta sendo desenvolvido com o objetivo de criar um clone da plataforma TabNews, uma rede social voltada para tecnologia e programação. Além de replicar as funcionalidades dessa plataforma, o projeto também tem como principal objetivo ser um portfólio pessoal.",
+        "Este projeto esta sendo desenvolvido com o objetivo de criar um clone da plataforma <a href='https://www.tabnews.com.br' class='description-link' target='_blank' rel='noopener noreferrer'>TabNews</a>, uma rede social voltada para tecnologia e programação. Além de replicar as funcionalidades dessa plataforma, o projeto também tem como principal objetivo ser um portfólio pessoal.",
       image: "/videos/felipeparaizo.mp4",
       technologies: [
         "JavaScript",
         "Next.js",
         "Node.js",
+        "React",
         "PostgreSQL",
         "CI/CD",
         "Jest",
@@ -140,7 +141,10 @@ const ProjectsSection = () => {
                 <div className="project-content">
                   <div className="project-header">
                     <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
+                    <p
+                      className="project-description"
+                      dangerouslySetInnerHTML={{ __html: project.description }}
+                    ></p>
                   </div>
 
                   <div className="project-technologies">
@@ -361,6 +365,20 @@ const ProjectsSection = () => {
           margin-bottom: 0;
         }
 
+        .project-description :global(.description-link),
+        .project-description :global(.description-link:link),
+        .project-description :global(.description-link:visited),
+        .project-description :global(.description-link:active),
+        .project-description :global(.description-link:focus) {
+          color: var(--accent-lime);
+          text-decoration: none;
+        }
+
+        :global(.description-link:hover) {
+          color: var(--accent-lime);
+          text-decoration: underline;
+        }
+
         .project-technologies {
           display: flex;
           flex-wrap: wrap;
@@ -444,10 +462,6 @@ const ProjectsSection = () => {
 
           .project-title {
             font-size: 1.2rem;
-          }
-
-          .project-description {
-            font-size: 0.85rem;
           }
 
           .featured-badge {
