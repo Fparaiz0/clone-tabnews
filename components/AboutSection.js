@@ -165,8 +165,8 @@ const AboutSection = () => {
           gap: 1.5rem;
           margin: 2.5rem 0;
           padding: 2rem;
-          background: rgba(59, 130, 246, 0.05);
-          border: 1px solid rgba(59, 130, 246, 0.1);
+          background: rgba(4, 24, 1, 0.51);
+          border: 1px solid rgba(4, 24, 1, 0.51);
           border-radius: 12px;
         }
 
@@ -222,8 +222,8 @@ const AboutSection = () => {
           grid-template-columns: repeat(2, 1fr);
           gap: 1.5rem 2rem;
           padding: 2rem;
-          background: rgba(59, 130, 246, 0.05);
-          border: 1px solid rgba(59, 130, 246, 0.1);
+          background: rgba(4, 24, 1, 0.51);
+          border: 1px solid rgba(4, 24, 1, 0.51);
           border-radius: 12px;
           height: fit-content;
         }
@@ -259,8 +259,8 @@ const AboutSection = () => {
         }
 
         .skill-tag {
-          background: rgba(59, 130, 246, 0.1);
-          border: 1px solid rgba(59, 130, 246, 0.2);
+          background: rgba(108, 245, 149, 0.15);
+          border: 1px solid rgba(108, 245, 149, 0.12);
           color: var(--primary-blue-light);
           padding: 0.5rem 0.9rem;
           border-radius: 20px;
@@ -272,13 +272,10 @@ const AboutSection = () => {
 
         .skill-tag:hover {
           transform: translateY(-1px);
-          background: rgba(59, 130, 246, 0.15);
-          box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+          background: rgba(108, 245, 149, 0.29);
+          box-shadow: 0 2px 8px rgba(108, 245, 149, 0.25);
         }
 
-        /* --- Media Queries --- */
-
-        /* Tablet (1024px e abaixo) */
         @media (max-width: 1024px) {
           .about-content {
             gap: 3rem;
@@ -307,7 +304,6 @@ const AboutSection = () => {
           }
         }
 
-        /* Mobile (768px e abaixo) */
         @media (max-width: 768px) {
           .about-details {
             grid-template-columns: 1fr;
@@ -323,7 +319,6 @@ const AboutSection = () => {
           }
         }
 
-        /* Extra Small Mobile (480px e abaixo) */
         @media (max-width: 480px) {
           .skills-grid {
             grid-template-columns: 1fr;

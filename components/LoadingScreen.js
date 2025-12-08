@@ -12,7 +12,7 @@ const LoadingScreen = () => {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return Math.min(100, prev + Math.random() * 15);
       });
     }, 200);
 
@@ -47,50 +47,49 @@ const LoadingScreen = () => {
 
   return (
     <div className="loading-screen">
+      {" "}
       <div className="loader">
-        {/* Background animado */}
+        {" "}
         <div className="loading-background">
-          <div className="floating-orb orb-1"></div>
-          <div className="floating-orb orb-2"></div>
-          <div className="floating-orb orb-3"></div>
-        </div>
-
+          <div className="floating-orb orb-1"></div>{" "}
+          <div className="floating-orb orb-2"></div>{" "}
+          <div className="floating-orb orb-3"></div>{" "}
+        </div>{" "}
         <div className="loader-content">
-          {/* Logo com animação */}
           <div className="logo-container">
-            <div className="logo">FP</div>
-            <div className="logo-glow"></div>
-          </div>
-
-          {/* Texto animado */}
+            <div className="logo">FP</div>{" "}
+            <div className="logo-glow"></div>{" "}
+          </div>{" "}
           <div className="loading-text">
-            {currentText}
-            <span className="cursor">|</span>
-          </div>
-
-          {/* Barra de progresso sofisticada */}
+            {currentText || "Inicial"} <span className="cursor">|</span>{" "}
+          </div>{" "}
           <div className="progress-container">
+            {" "}
             <div className="progress-bar">
+              {" "}
               <div className="progress-fill" style={{ width: `${progress}%` }}>
-                <div className="progress-shine"></div>
-              </div>
-            </div>
+                <div className="progress-shine"></div>{" "}
+              </div>{" "}
+            </div>{" "}
             <div className="progress-percentage">
-              {Math.min(100, Math.round(progress))}%
-            </div>
-          </div>
-
-          {/* Loading dots */}
+              {Math.min(100, Math.round(progress))}%{" "}
+            </div>{" "}
+          </div>{" "}
           <div className="loading-dots">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
-        </div>
-      </div>
-
+            <div className="dot"></div> <div className="dot"></div>{" "}
+            <div className="dot"></div>{" "}
+          </div>{" "}
+        </div>{" "}
+      </div>{" "}
       <style jsx>{`
         .loading-screen {
+          --darker: #0c1c16;
+          --primary-green: #2ecc71;
+          --primary-green-light: #58d68d;
+          --accent-lime: #ceff78;
+          --accent-lime-dark: #b8cc6b;
+          --secondary-mint: #e0f8cf;
+
           position: fixed;
           top: 0;
           left: 0;
@@ -383,7 +382,6 @@ const LoadingScreen = () => {
           }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .logo {
             font-size: 3rem;
@@ -421,7 +419,7 @@ const LoadingScreen = () => {
             font-size: 1rem;
           }
         }
-      `}</style>
+      `}</style>{" "}
     </div>
   );
 };

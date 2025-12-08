@@ -450,12 +450,12 @@ const HeroSection = React.forwardRef((props, ref) => {
             var(--primary-blue-dark)
           );
           color: white;
-          box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+          box-shadow: 0 8px 25px rgba(1, 19, 2, 0.3);
         }
 
         .btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+          box-shadow: 0 8px 25px rgba(1, 19, 2, 0.3);
         }
 
         .btn-secondary {
@@ -564,7 +564,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           padding-left: 4.5em;
         }
 
-        /* Syntax Highlighting Colors */
         .keyword {
           color: #bb9af7;
           font-weight: 600;
@@ -603,9 +602,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           color: #ff9e64;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
-
-        /* Large Desktop */
         @media (min-width: 1440px) {
           .hero-content {
             gap: 5rem;
@@ -620,7 +616,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Tablet Landscape */
         @media (max-width: 1200px) {
           .hero-content {
             gap: 3rem;
@@ -636,7 +631,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Tablet Portrait */
         @media (max-width: 1024px) {
           .hero-content {
             grid-template-columns: 1fr;
@@ -670,7 +664,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Mobile Landscape */
         @media (max-width: 768px) {
           .hero {
             padding: 4rem 0 2rem;
@@ -721,7 +714,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Mobile Portrait */
         @media (max-width: 640px) {
           .hero {
             padding: 3rem 0 1.5rem;
@@ -788,7 +780,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Small Mobile */
         @media (max-width: 480px) {
           .hero-title {
             font-size: 2rem;
@@ -827,7 +818,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Extra Small Mobile */
         @media (max-width: 360px) {
           .hero {
             padding: 2.5rem 0 1rem;
@@ -856,7 +846,6 @@ const HeroSection = React.forwardRef((props, ref) => {
           }
         }
 
-        /* Height adjustments for mobile */
         @media (max-height: 700px) and (max-width: 768px) {
           .hero {
             min-height: 100vh;

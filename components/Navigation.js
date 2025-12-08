@@ -48,7 +48,7 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
           top: 0;
           left: 0;
           width: 100%;
-          background: rgba(5, 20, 15, 0.9);
+          background: rgba(1, 26, 17, 0.29);
           backdrop-filter: blur(20px);
           border-bottom: 1px solid rgba(206, 241, 123, 0.1);
           z-index: 1000;
@@ -190,16 +190,12 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
           transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
-
-        /* Mobile - Navigation escondida */
         @media (max-width: 768px) {
           .navigation {
             display: none;
           }
         }
 
-        /* Tablet */
         @media (max-width: 1024px) and (min-width: 769px) {
           .nav-container {
             padding: 1rem 1.5rem;
@@ -219,28 +215,24 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
           }
         }
 
-        /* Desktop */
         @media (min-width: 769px) {
           .menu-toggle {
             display: none;
           }
         }
 
-        /* Mobile Portrait - Garantir que fique escondido */
         @media (max-width: 640px) {
           .navigation {
             display: none;
           }
         }
 
-        /* Small Mobile */
         @media (max-width: 480px) {
           .navigation {
             display: none;
           }
         }
 
-        /* Extra Small Mobile */
         @media (max-width: 360px) {
           .navigation {
             display: none;

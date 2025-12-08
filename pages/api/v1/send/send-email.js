@@ -8,14 +8,12 @@ export default async function handler(req, res) {
   try {
     const { name, email, subject, message } = req.body;
 
-    // Validação
     if (!name || !email || !subject || !message) {
       return res.status(400).json({
         error: "Todos os campos são obrigatórios",
       });
     }
 
-    // Configurar transporte - MÉTODO CORRETO
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -24,7 +22,6 @@ export default async function handler(req, res) {
       },
     });
 
-    // Verificar configuração
     await transporter.verify();
 
     const mailOptions = {
@@ -57,7 +54,6 @@ export default async function handler(req, res) {
       `,
     };
 
-    // Enviar email
     const info = await transporter.sendMail(mailOptions);
     console.log("✅ Email enviado:", info.messageId);
 

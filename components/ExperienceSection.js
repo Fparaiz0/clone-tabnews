@@ -5,12 +5,15 @@ const ExperienceSection = () => {
     {
       title: "Desenvolvedor Full Stack Pleno",
       company: "MagnoJet",
-      duration: "Jul 2025 - Presente",
+      duration: "Jul 2025 - Atualmente",
       description:
         "Atuo na MagnoJet desenvolvendo soluções robustas e inovadoras para o ERP TOTVS Protheus, com responsabilidades que incluem análise de desempenho, suporte aos usuários, evolução de funcionalidades e desenho/estruturação de APIs. Como iniciativa complementar, desenvolvi uma plataforma em PHP (Laravel 12) para pré-postagens dos Correios, integrando-se via APIs oficiais para orquestrar a comunicação entre a aplicação e os serviços dos Correios. Minha atuação é orientada à otimização de processos, eficiência das integrações e excelência em suporte e entregas tecnológicas.",
       technologies: [
+        "TOTVS Protheus",
         "Laravel 12",
         "Php",
+        "Node.js",
+        "Tailwind",
         "Flutter",
         "JavaScript",
         "MySQL",
@@ -20,6 +23,15 @@ const ExperienceSection = () => {
       type: "trabalho",
     },
     {
+      title: "Análise e Desenvolvimento de Sistemas (ADS)",
+      company: "PUCPR - Pontifícia Universidade Católica do Paraná",
+      duration: "Jan 2025 - Jun 2027",
+      description:
+        "Atualmente, estou cursando Análise e Desenvolvimento de Sistemas na PUCPR (Pontifícia Universidade Católica do Paraná). Este curso tem sido fundamental para aprimorar meus conhecimentos em diversas áreas da programação, mantendo um foco constante na busca por excelência e no aprendizado contínuo.",
+      technologies: ["Php", "MySQL", "Arduino", "Python", "Java", "JavaScript"],
+      type: "educacao",
+    },
+    {
       title: "Desenvolvedor Back End Junior",
       company: "Pró-Varejo",
       duration: "Out 2024 - Jul 2025",
@@ -27,6 +39,23 @@ const ExperienceSection = () => {
         "Atuei na Pró-Varejo colaborando tanto na manutenção quanto na criação de módulos, com destaque para o desenvolvimento do módulo CLT voltado para empréstimos consignados de trabalhadores. Nesse período, aprimorei minhas habilidades em lógica de programação, análise de dados e desenvolvimento web, utilizando principalmente PHP, JavaScript e Banco de dados.",
       technologies: ["Php", "JavaScript", "MySQL", "BootStrap"],
       type: "trabalho",
+    },
+    {
+      title: "Técnico em Informática",
+      company: "CEEP Seiji Hattanda",
+      duration: "Jan 2020 - Dez 2024",
+      description:
+        "Minha formação técnica, desenvolvida ao longo de quatro anos no CEEP Seiji Hattanda, constituiu a fundação de minha trajetória profissional na área de tecnologia. Durante este período, consolidei conhecimentos práticos e teóricos essenciais, abrangendo: a arquitetura e manutenção de hardware e software, a gestão de redes, e uma introdução fundamental à programação. Foi esta iniciação à programação que catalisou o meu interesse e paixão pela área de desenvolvimento e suas diversas ramificações.",
+      technologies: [
+        "Hardware",
+        "Software",
+        "Html",
+        "Css",
+        "Php",
+        "JavaScript",
+        "Redes",
+      ],
+      type: "educacao",
     },
   ];
 
@@ -73,7 +102,7 @@ const ExperienceSection = () => {
       <div className="container">
         <h2 className="section-title">Trajetória Profissional</h2>
         <p className="section-subtitle">
-          Minha jornada de crescimento e aprendizado contínuo na tecnologia
+          Minha jornada de crescimento e aprendizado contínuo na tecnologia!
         </p>
 
         <div className="timeline">
@@ -86,7 +115,6 @@ const ExperienceSection = () => {
                 >
                   {getTypeIcon(exp.type)}
                 </div>
-                <div className="timeline-line"></div>
               </div>
 
               <div className="timeline-content">
@@ -120,8 +148,7 @@ const ExperienceSection = () => {
 
       <style jsx>{`
         .experience {
-          padding: 5rem 0;
-          background: rgba(5, 20, 15, 0.2);
+          padding: 3rem 0;
           position: relative;
         }
 
@@ -308,7 +335,6 @@ const ExperienceSection = () => {
           transform: translateY(-1px);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
           .experience {
             padding: 3rem 0;
@@ -395,7 +421,6 @@ const ExperienceSection = () => {
           }
         }
 
-        /* Animações suaves */
         .timeline-item {
           animation: fadeInUp 0.6s ease-out;
           animation-fill-mode: both;
