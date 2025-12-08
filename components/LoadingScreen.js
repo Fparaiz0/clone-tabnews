@@ -82,9 +82,7 @@ const LoadingScreen = () => {
         </div>{" "}
       </div>{" "}
       <style jsx>{`
-        /* DEFINIÇÃO DAS VARIÁVEIS CSS */
         .loading-screen {
-          /* Cores e Fundo */
           --darker: #0c1c16;
           --primary-green: #2ecc71;
           --primary-green-light: #58d68d;
@@ -92,7 +90,6 @@ const LoadingScreen = () => {
           --accent-lime-dark: #b8cc6b;
           --secondary-mint: #e0f8cf;
 
-          /* Resto do estilo da tela de carregamento */
           position: fixed;
           top: 0;
           left: 0;
@@ -115,7 +112,6 @@ const LoadingScreen = () => {
           overflow: hidden;
           z-index: -1;
         }
-        /* ... (Restante do seu CSS) ... */
 
         .floating-orb {
           position: absolute;
@@ -386,7 +382,6 @@ const LoadingScreen = () => {
           }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .logo {
             font-size: 3rem;
