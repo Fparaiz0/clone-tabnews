@@ -50,6 +50,8 @@ const HeroSection = React.forwardRef((props, ref) => {
     return () => clearTimeout(timeout);
   }, [currentText, currentIndex, isDeleting]);
 
+  const experiencia = new Date().getFullYear() - 2025;
+
   return (
     <section
       ref={ref}
@@ -74,9 +76,11 @@ const HeroSection = React.forwardRef((props, ref) => {
             </h1>
 
             <p className="hero-description">
-              Transformo ideias em soluções digitais robustas e escaláveis. Com
-              1 ano de experiência, crio experiências excepcionais que
-              impulsionam negócios e resolvem problemas complexos.
+              Transformo ideias em soluções digitais robustas e escaláveis. Com{" "}
+              {""}
+              {experiencia} {experiencia > 1 ? "anos" : "ano"} de experiência,
+              crio experiências excepcionais que impulsionam negócios e resolvem
+              problemas complexos.
             </p>
 
             <div className="hero-actions">

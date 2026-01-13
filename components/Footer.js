@@ -5,8 +5,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <p>
-          &copy; {new Date().getFullYear()} Felipe Paraizo. Todos os direitos
-          reservados.
+          &copy; 2025 - {new Date().getFullYear()} Felipe Paraizo
         </p>
         <div className="footer-links">
           <a href="#home">Início</a>

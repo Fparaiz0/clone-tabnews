@@ -29,6 +29,8 @@ const AboutSection = () => {
     },
   ];
 
+  const experiencia = new Date().getFullYear() - 2025;
+
   return (
     <section id="about" className="about">
       <div className="container">
@@ -40,9 +42,10 @@ const AboutSection = () => {
               <p>
                 Sou Felipe Paraizo, um desenvolvedor Full Stack apaixonado por
                 criar soluções digitais que fazem a diferença. Com background em
-                Análise e Desenvolvimento de Sistemas pela PUC-PR e 1 ano de
-                experiência no mercado, especializei-me em desenvolver
-                aplicações web modernas, escaláveis e de alto desempenho.
+                Análise e Desenvolvimento de Sistemas pela PUC-PR e{" "}
+                {experiencia} {experiencia > 1 ? "anos" : "ano"} de experiência
+                no mercado, especializei-me em desenvolver aplicações web
+                modernas, escaláveis e de alto desempenho.
               </p>
               <p>
                 Minha abordagem combina expertise técnica com compreensão de
