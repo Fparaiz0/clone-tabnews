@@ -4,10 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p>
-          &copy; {new Date().getFullYear()} Felipe Paraizo. Todos os direitos
-          reservados.
-        </p>
+        <p>&copy; 2025 - {new Date().getFullYear()} Felipe Paraizo</p>
         <div className="footer-links">
           <a href="#home">Início</a>
           <a href="#about">Sobre</a>
