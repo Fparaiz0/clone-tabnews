@@ -77,7 +77,6 @@ const HeroSection = React.forwardRef((props, ref) => {
 
             <p className="hero-description">
               Transformo ideias em soluções digitais robustas e escaláveis. Com{" "}
-              {""}
               {experiencia} {experiencia > 1 ? "anos" : "ano"} de experiência,
               crio experiências excepcionais que impulsionam negócios e resolvem
               problemas complexos.
