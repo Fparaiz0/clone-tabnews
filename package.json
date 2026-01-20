@@ -2,6 +2,7 @@
   "name": "clone-tabnews",
   "version": "1.0.0",
   "description": "Implementação do https://www.tabnews.com.br para o https://curso.dev",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
@@ -16,7 +17,7 @@
     "migrations:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "lint:eslint:check": "next lint --dir .",
+    "lint:eslint:check": "npx eslint .",
     "prepare": "husky",
     "commit": "cz"
   },
@@ -37,6 +38,9 @@
   "devDependencies": {
     "@commitlint/cli": "20.3.1",
     "@commitlint/config-conventional": "20.3.1",
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@next/eslint-plugin-next": "^16.1.4",
     "commitizen": "4.3.1",
     "concurrently": "9.2.1",
     "cz-conventional-changelog": "3.3.0",
