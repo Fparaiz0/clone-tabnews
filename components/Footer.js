@@ -10,9 +10,7 @@ const Footer = () => {
           <a href="#home">Início</a>
           <a href="#about">Sobre</a>
           <a href="#contact">Contato</a>
-          <Link href="/status" className="link-item">
-            Status
-          </Link>
+          <Link href="/status">Status</Link>
         </nav>
       </div>
 
