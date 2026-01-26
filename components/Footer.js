@@ -1,15 +1,17 @@
 import React from "react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
         <p>&copy; 2025 - {new Date().getFullYear()} Felipe Paraizo</p>
-        <div className="footer-links">
+        <nav className="footer-links">
           <a href="#home">Início</a>
           <a href="#about">Sobre</a>
           <a href="#contact">Contato</a>
-        </div>
+          <Link href="/status">Status</Link>
+        </nav>
       </div>
 
       <style jsx>{`
@@ -33,13 +35,13 @@ const Footer = () => {
           gap: 1.5rem;
         }
 
-        .footer-links a {
+        .footer-links :global(a) {
           color: var(--light);
           text-decoration: none;
           transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
+        .footer-links :global(a:hover) {
           color: var(--primary);
         }
       `}</style>
