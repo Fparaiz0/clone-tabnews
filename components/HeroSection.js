@@ -3,12 +3,8 @@ import React, { useState, useEffect } from "react";
 const HeroSection = React.forwardRef((props, ref) => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   useEffect(() => {
     const texts = [
@@ -31,9 +27,12 @@ const HeroSection = React.forwardRef((props, ref) => {
     }
 
     if (isDeleting && currentText === "") {
-      setIsDeleting(false);
-      setCurrentIndex((prev) => (prev + 1) % texts.length);
-      return;
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+      }, 0);
+
+      return () => clearTimeout(timeout);
     }
 
     const timeout = setTimeout(
