@@ -49,11 +49,6 @@ p {
   border-radius: 3px;
 }
 
-.footer {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
 @keyframes pulse {
   0%,
   100% {

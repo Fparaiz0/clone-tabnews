@@ -19,7 +19,9 @@ const Footer = () => {
           padding: 2rem 0;
           text-align: center;
           color: var(--light);
-          font-size: 0.9rem;
+          font-size: 1rem;
+          position: relative;
+          z-index: 20;
         }
 
         .footer .container {
