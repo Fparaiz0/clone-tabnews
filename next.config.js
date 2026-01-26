@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    outputFileTracingIncludes: {
-      "/api/v1/migrations": ["infra/migrations/**"],
-    },
+  outputFileTracingIncludes: {
+    "/api/v1/migrations": ["infra/migrations/**"],
   },
 };
 
